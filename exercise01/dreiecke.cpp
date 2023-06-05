@@ -12,33 +12,33 @@ class Punkt3D {
             this->z = z;
         }
 
-        double getX() const {return x;}
-        double getY() const {return y;}
-        double getZ() const {return z;}
+        double getX() const { return x; }
+        double getY() const { return y; }
+        double getZ() const { return z; }
 };
 
 class Dreieck {
-    private:
-        double abstand1, abstand2, abstand3;
-        double umfang;
+private:
+    double abstand1, abstand2, abstand3;
+    double umfang;
 
-        double berechneAbstand(Punkt3D p1, Punkt3D p2) {
-            return sqrt(pow(p1.getX() - p2.getX(), 2) + pow(p1.getY() - p2.getY(), 2) + pow(p1.getZ() - p2.getZ(), 2));
-        }
+    double berechneAbstand(Punkt3D p1, Punkt3D p2) {
+        return sqrt(pow(p1.getX() - p2.getX(), 2) + pow(p1.getY() - p2.getY(), 2) + pow(p1.getZ() - p2.getZ(), 2));
+    }
 
-        double berechneUmfang() {return abstand1 + abstand2 + abstand3;}
+    double berechneUmfang() {return abstand1 + abstand2 + abstand3;}
 
-    public:
-        void init(Punkt3D p1, Punkt3D p2, Punkt3D p3) {
-            abstand1 = berechneAbstand(p1, p2);
-            abstand1 = berechneAbstand(p2, p3);
-            abstand1 = berechneAbstand(p3, p1);
-            umfang = berechneUmfang();
-        }
+public:
+    void init(Punkt3D p1, Punkt3D p2, Punkt3D p3) {
+        abstand1 = berechneAbstand(p1, p2);
+        abstand1 = berechneAbstand(p2, p3);
+        abstand1 = berechneAbstand(p3, p1);
+        umfang = berechneUmfang();
+    }
 
-        bool isGleichschenklig() const {return abstand1 == abstand2 || abstand1 == abstand3 || abstand2 == abstand3;}
+    bool isGleichschenklig() const {return abstand1 == abstand2 || abstand1 == abstand3 || abstand2 == abstand3;}
 
-        double getUmfang() const {return umfang;}
+    double getUmfang() const {return umfang;}
 };
 
 int main(void) {

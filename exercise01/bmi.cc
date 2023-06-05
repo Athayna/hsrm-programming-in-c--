@@ -1,42 +1,39 @@
 #include <iostream>
-using namespace std;
 
 class Patient {
-  private:
+private:
     double weight, height;
 
-  public:
+public:
+    // init method replacing a constructor
     void init(double weight, double height) {
-      if (weight <= 0) {this->weight = 0;}
-      else {this->weight = weight;}
-      if (height <= 0) {this->height = 0;}
-      else {this->height = height;}
+        this->weight = (weight <= 0) ? 0 : weight;
+        this->height = (height <= 0) ? 0 : height;
     }
 
-    void anzeigen() const {
-      cout << "Patient: " << weight << " kg für " << height <<" m." << endl;
+    // method to display the patient's weight and height
+    void anzeigen(void) const {
+        std::cout << "Patient: " << weight << " kg für " << height << " m." << std::endl;
     }
 
-    double gewicht() const {return weight;}
-    double groesse() const {return height;}
-    double bmi() const {
-      if (height == 0)
-        return 0;
-      else
-        return weight / (height * height);
-    }
+    // getter method to return the patient's weight
+    double gewicht(void) const { return weight; }
+    // getter method to return the patient's height
+    double groesse(void) const { return height; }
+    // method to calculate and return the patient's BMI
+    double bmi(void) const { return ((height == 0) ? 0 : weight / (height * height)); }
 };
 
-int main()
-{
-  Patient jemand;
-  double gewicht, groesse;
-  do {
-    cout << "Entrez un gewicht (kg) et une groesse (m) : ";
-    cin >> gewicht >> groesse;
-    jemand.init(gewicht, groesse);
-    jemand.anzeigen();
-    cout << "bmi : " << jemand.bmi() << endl;
-  } while (gewicht * groesse != 0.0);
-  return 0;
+int main() {
+    // given code by the professor to test the class (translated output to German)
+    Patient jemand;
+    double gewicht, groesse;
+    do {
+        std::cout << "Gewicht (kg) und Groesse (m): ";
+        std::cin >> gewicht >> groesse;
+        jemand.init(gewicht, groesse);
+        jemand.anzeigen();
+        std::cout << "BMI: " << jemand.bmi() << std::endl;
+    } while (gewicht * groesse != 0.0);
+    return 0;
 }

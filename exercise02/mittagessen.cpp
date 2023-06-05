@@ -6,7 +6,7 @@ public:
         std::cout << "Es ist Zeit fuer das Mittagessen. Vorspeise?" << std::endl;
     }
 
-    ~Vorspeise(void) {
+    virtual ~Vorspeise(void) {
         std::cout << "Dann kommt die Hauptspeise!" << std::endl;
     }
 

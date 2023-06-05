@@ -5,13 +5,13 @@ class Rechteck {
         int breite, laenge;
 
     public:
-        int oberfl() const {return breite * laenge;}
+        int oberfl() const { return breite * laenge; }
         
         //getters and setters
-        void setBreite(int breite) {this->breite = breite;}
-        int getBreite() const {return breite;}
-        void setLaenge(int laenge) {this->laenge = laenge;}
-        int getLaenge() const {return laenge;}
+        void setBreite(int breite) { this->breite = breite; }
+        int getBreite() const { return breite; }
+        void setLaenge(int laenge) { this->laenge = laenge; }
+        int getLaenge() const { return laenge; }
 };
 
 int main(void) {

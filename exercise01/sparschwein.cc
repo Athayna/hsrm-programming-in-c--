@@ -6,43 +6,51 @@ using namespace std;
  *******************************************/
 
 class Sparschwein {
-  private:
+private:
     double betrag;
 
-  public:
-    void anzeigen() const {
-      if (betrag <= 0) {cout << "Sie sind pleite" << endl;}
-      else {cout << "Sie haben " << betrag << " Euro in Ihrem Sparschwein" << endl;}
+public:
+    // print method that displays a message either implying that the piggy bank is empty or displaying the amount of money in the piggy bank
+    void anzeigen(void) const {
+        if (betrag <= 0) { std::cout << "Sie sind pleite" << std::endl; }
+        else { std::cout << "Sie haben " << betrag << " Euro in Ihrem Sparschwein" << std::endl; }
     }
 
-    void schuetteln() const {if (betrag > 0) {cout << "Bling bling" << endl;}}
+    // method to shake the piggy bank and print a message if it contains money
+    void schuetteln(void) const { if (betrag > 0) {std::cout << "Bling bling" << std::endl;} }
 
-    void fuellen(double betrag) {if (betrag > 0) {this->betrag += betrag;}}
+    // method to fill the piggy bank with money handed in as a parameter
+    void fuellen(double betrag) { if (betrag > 0) {this->betrag += betrag;} }
 
-    void leeren() {betrag = 0;}
+    // method to empty the piggy bank
+    void leeren(void) { betrag = 0; }
 
+    // method to remove money from the piggy bank if the handed in amount is positive and smaller than the amount of money in the piggy bank
     void entnehmen(double betrag) {
-      if (betrag > 0) {
-        if (betrag >= this->betrag) {this->betrag = 0;}
-        else {this->betrag -= betrag;}
-      }
+        if (betrag > 0) {
+            this->betrag = ((betrag >= this->betrag) ? 0 : this->betrag - betrag);
+        }
     }
 
+    // method to check if the handed in amount of money is smaller than the amount of money in the piggy bank and return the remaining amount of money in the piggy bank
     bool ausreichend_geld(double betrag, double& saldo) const {
-      if (betrag <= 0) {
-        saldo = this->betrag;
-        return true;
-      } else if (betrag > this->betrag) {
-        saldo = (this->betrag - betrag) * (-1);
-        return false;
-      } else {
-        saldo = this->betrag - betrag;
-        return true;
-      }
+        if (betrag <= 0) {
+            saldo = this->betrag;
+            return true;
+        } else if (betrag > this->betrag) {
+            saldo = (this->betrag - betrag) * (-1);
+            return false;
+        } else {
+            saldo = this->betrag - betrag;
+            return true;
+        }
     }
 
-    double getBetrag() const {return betrag;}
+    // getter method to return the piggy bank's amount
+    double getBetrag(void) const { return betrag; }
 };
+
+// following code was given by the professor to test the class
 
 /*******************************************
  * Ändern Sie nichts mehr nach dieser Zeile

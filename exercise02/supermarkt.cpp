@@ -10,12 +10,15 @@ private:
     bool aktion;
 
 public:
+    // constructor for articles without a sale, calling the other constructor with the sale parameter "false"
     Artikel(std::string name, double preis) : Artikel(name, preis, false) {}
+    // constructor for articles with a sale
     Artikel(std::string name, double preis, bool aktion) : name(name), preis(preis), aktion(aktion) {}
 
-    std::string getName(void) const {return name;}
-    double getPreis(void) const {return preis;}
-    bool getAktion(void) const {return aktion;}
+    // getter methods to return the article's name, price and sale status
+    std::string getName(void) const { return name; }
+    double getPreis(void) const { return preis; }
+    bool getAktion(void) const { return aktion; }
 };
 
 class Einkauf {
@@ -24,11 +27,14 @@ private:
     int menge;
 
 public:
+    // constructor initializing a purchase with the article and the amount purchased
     Einkauf(Artikel artikel, int menge) : artikel(artikel), menge(menge) {}
 
-    Artikel getArtikel(void) const {return artikel;}
-    int getMenge(void) const {return menge;}
+    // getter methods to return the article and the amount purchased
+    Artikel getArtikel(void) const { return artikel; }
+    int getMenge(void) const { return menge; }
 
+    // method to print out the purchase on the console
     void anzeigen() {
         std::cout << artikel.getName() << " : " << artikel.getPreis()
         << " x " << menge << " = " << (artikel.getPreis() * menge) << " Euro"
@@ -41,9 +47,12 @@ private:
     std::vector<Einkauf> einkaeufe;
 
 public:
-    void fuellen(Artikel artikel) {fuellen(artikel, 1);}
-    void fuellen(Artikel artikel, int menge) {einkaeufe.push_back(Einkauf(artikel, menge));}
-    std::vector<Einkauf> getEinkaeufe(void) {return einkaeufe;}
+    // method to add a purchase to the shopping cart with no amount specified, calling the other method with the amount parameter "1"
+    void fuellen(Artikel artikel) { fuellen(artikel, 1); }
+    // method to add a purchase to the shopping cart with the amount specified
+    void fuellen(Artikel artikel, int menge) { einkaeufe.push_back(Einkauf(artikel, menge)); }
+    // getter method to return the purchases in the shopping cart
+    std::vector<Einkauf> getEinkaeufe(void) { return einkaeufe; }
 };
 
 class Kasse {
@@ -53,8 +62,10 @@ private:
     double gesamtbetrag;
 
 public:
+    // constructor initializing a cash register with the scanned amount of money and the total amount of money set to 0
     Kasse() : betrag(0), gesamtbetrag(0) {}
     
+    // method to scan the purchases in the shopping cart, add the amount of money to the total amount of money and print out the purchases on the console
     void scannen(Einkaufswagen wagen) {
         for (Einkauf einkauf : wagen.getEinkaeufe()) {
             betrag += (einkauf.getArtikel().getPreis() * einkauf.getMenge());
@@ -66,10 +77,11 @@ public:
         betrag = 0;
     }
 
-    void anzeigen(void) const {
-        std::cout << gesamtbetrag << " Euro" << std::endl;
-    }
+    // method to print out the total amount of money scanned on the console
+    void anzeigen(void) const { std::cout << gesamtbetrag << " Euro" << std::endl; }
 };
+
+// following code was given by the professor for testing purposes
 
 // ======================================================================
 int main()

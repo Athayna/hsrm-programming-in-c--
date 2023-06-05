@@ -6,8 +6,8 @@ class Papier {
     
     public:
         void schreibPapier(int alter, int betrag) {this->alter = alter; this->betrag = betrag;}
-        int getAlter() const {return alter;}
-        int getBetrag() const {return betrag;}
+        int getAlter(void) const {return alter;}
+        int getBetrag(void) const {return betrag;}
 };
 
 class Magier {
@@ -20,8 +20,8 @@ class Magier {
             betrag = ergebnis % 100;
             alter = ergebnis / 100;
         }
-        int getAlter() const {return alter;}
-        int getBetrag() const {return betrag;}
+        int getAlter(void) const {return alter;}
+        int getBetrag(void) const {return betrag;}
 };
 
 class Assistent {
@@ -31,8 +31,8 @@ class Assistent {
 
     public:
         void setPapier(Papier papier) {this->papier = papier;}
-        void berechneErgebnis() {ergebnis = (papier.getAlter() * 2 + 5) * 50 + papier.getBetrag() - 365;}
-        int getErgebnis() const {return ergebnis;}
+        void berechneErgebnis(void) {ergebnis = (papier.getAlter() * 2 + 5) * 50 + papier.getBetrag() - 365;}
+        int getErgebnis(void) const {return ergebnis;}
 };
 
 class Zuschauer {
@@ -42,10 +42,10 @@ class Zuschauer {
 
     public:
         void setAlter(std::istream& in) {in >> alter;}
-        int getAlter() const {return alter;}
+        int getAlter(void) const {return alter;}
         void setBetrag(std::istream& in) {in >> betrag;}
-        int getBetrag() const {return betrag;}
-        Papier getPapier() const {return papier;}
+        int getBetrag(void) const {return betrag;}
+        Papier getPapier(void) const {return papier;}
 };
 
 

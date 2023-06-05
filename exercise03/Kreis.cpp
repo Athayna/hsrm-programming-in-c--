@@ -17,7 +17,15 @@ class Kreis {
         void getMittelpunkt(void) const {std::cout << "X=" << x << " Y=" << y << std::endl;}
         void setRadius(double radius) {this->radius = radius;}
         double getRadius(void) const {return radius;}
+        double getX(void) const {return x;}
+        double getY(void) const {return y;}  
 };
+
+//additional operator overload for exercise 3.1
+std::ostream& operator<<(std::ostream& os, const Kreis& kreis) {
+    os << "X=" << kreis.getX() << " Y=" << kreis.getY() << " Raduis=" << kreis.getRadius();
+    return os;
+}
 
 int main (void) {
     //init
@@ -36,6 +44,9 @@ int main (void) {
     std::cout << "Punkt (3|4) liegt in k1=" << k1.istImInneren(3, 4) << std::endl;
     std::cout << "Punkt (5|8) liegt in k2=" << k2.istImInneren(5, 8) << std::endl;
     std::cout << "Punkt (8|8) liegt in k2=" << k2.istImInneren(8, 8) << std::endl;
+
+    //test << operator override for exercise 3.1
+    std::cout << k1 << std::endl;
 
     return 0;
 }

@@ -21,7 +21,7 @@ public:
     }
 
     //destructor
-    ~Kuscheltier(void) {
+    virtual ~Kuscheltier(void) {
         std::cout << "[Das Kuscheltier " << name << " wurde gelöscht.]" << std::endl;
     }
 

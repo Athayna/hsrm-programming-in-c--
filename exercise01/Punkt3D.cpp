@@ -1,27 +1,23 @@
 #include <iostream>
 
 class Punkt3D {
-    private:
-        double x, y, z;
+private:
+    double x, y, z;
 
-    public:
-        void init(double x, double y, double z) {
-            this->x = x;
-            this->y = y;
-            this->z = z;
-        }
+public:
+    void init(double x, double y, double z) {
+        this->x = x;
+        this->y = y;
+        this->z = z;
+    }
 
-        void anzeige() const {
-            std::cout << "X=" << x << ", Y=" << y <<", Z=" << z << std::endl;
-        }
+    void anzeige() const {
+        std::cout << "X=" << x << ", Y=" << y <<", Z=" << z << std::endl;
+    }
 
-        bool vergleichen(Punkt3D other) {
-            return x == other.getX() && y == other.getY() && z == other.getZ();
-        }
-
-        double getX() const {return x;}
-        double getY() const {return y;}
-        double getZ() const {return z;}
+    bool vergleichen(Punkt3D other) {
+        return x == other.x && y == other.y && z == other.z;
+    }
 };
 
 int main(void) {
