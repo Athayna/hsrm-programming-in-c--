@@ -21,14 +21,87 @@ public:
 };
 
 // 3.2 c) externally overload << operator to print complex number
-std::ostream& operator<<(std::ostream& os, const KomplexeZahl& zahl) {
+std::ostream& operator<<(std::ostream& os, KomplexeZahl const& zahl) {
     os << zahl.getReal() << ((zahl.getImaginary() > 0) ? "+" : "-") << zahl.getImaginary() << "i";
     return os;
 }
 
 // 3.2 d) externally overload addition operator to add two complex numbers
 const KomplexeZahl operator+(KomplexeZahl z1, KomplexeZahl const& z2) {
-    
+    return KomplexeZahl(z1.getReal() + z2.getReal(), z1.getImaginary() + z2.getImaginary());    
+}
+
+// 3.2 d) externally overload addition operator to add a complex number to a real number
+const KomplexeZahl operator+(double z1, KomplexeZahl const& z2) {
+    return KomplexeZahl(z1 + z2.getReal(), z2.getImaginary());    
+}
+
+
+// 3.2 d) externally overload += operator to add two complex numbers
+KomplexeZahl& operator+=(KomplexeZahl& z1, KomplexeZahl const& z2) {
+    z1 = z1 + z2;
+    return z1;
+}
+
+// 3.2 d) externally overload += operator to add a real number to a complex number
+KomplexeZahl& operator+=(KomplexeZahl& z1, double const& z2) {
+    z1 = z1 + KomplexeZahl(z2, 0.0);
+    return z1;
+}
+
+// 3.2 d) externally overload subtraction operator to subtract two complex numbers
+const KomplexeZahl operator-(KomplexeZahl z1, KomplexeZahl const& z2) {
+    return KomplexeZahl(z1.getReal() - z2.getReal(), z1.getImaginary() - z2.getImaginary());    
+}
+
+// 3.2 d) externally overload -= operator to subtract two complex numbers
+KomplexeZahl& operator-=(KomplexeZahl& z1, KomplexeZahl const& z2) {
+    z1 = z1 - z2;
+    return z1;
+}
+
+// 3.2 e) externally overload -= operator to subtract a real number from a complex number
+KomplexeZahl& operator-=(KomplexeZahl& z1, double const& z2) {
+    z1 = z1 - KomplexeZahl(z2, 0.0);
+    return z1;
+}
+
+// 3.2 e) externally overload multiplication operator to multiply two complex numbers
+const KomplexeZahl operator*(KomplexeZahl z1, KomplexeZahl const& z2) {
+    return KomplexeZahl(z1.getReal() * z2.getReal() - z1.getImaginary() * z2.getImaginary(), z1.getReal() * z2.getImaginary() + z1.getImaginary() * z2.getReal());
+}
+
+// 3.2 e) externally overload division operator to divide two complex numbers
+const KomplexeZahl operator/(KomplexeZahl z1, KomplexeZahl const& z2) {
+    return KomplexeZahl((z1.getReal() * z2.getReal() + z1.getImaginary() * z2.getImaginary()) / (z2.getReal() * z2.getReal() + z2.getImaginary() * z2.getImaginary()), (z1.getImaginary() * z2.getReal() - z1.getReal() * z2.getImaginary()) / (z2.getReal() * z2.getReal() + z2.getImaginary() * z2.getImaginary()));
+}
+
+// 3.2 e) externally overload *= operator to multiply two complex numbers
+KomplexeZahl& operator*=(KomplexeZahl& z1, KomplexeZahl const& z2) {
+    z1 = z1 * z2;
+    return z1;
+}
+
+// 3.2 e) externally overload /= operator to divide two complex numbers
+KomplexeZahl& operator/=(KomplexeZahl& z1, KomplexeZahl const& z2) {
+    z1 = z1 / z2;
+    return z1;
+}
+
+// 3.2 f) externally overload * operator to multiply a complex number with a real number
+const KomplexeZahl operator*(double z1, KomplexeZahl const& z2) {
+    return KomplexeZahl(z1 * z2.getReal(), z1 * z2.getImaginary());
+}
+
+// 3.2 f) externally overload *= operator to multiply a complex number with a real number
+KomplexeZahl& operator*=(KomplexeZahl& z1, double const& z2) {
+    z1 = z1 * KomplexeZahl(z2, 0.0);
+    return z1;
+}
+
+// 3.2 f) externally overload / operator to divide a complex number by a real number
+const KomplexeZahl operator/(KomplexeZahl z1, double const& z2) {
+    return KomplexeZahl(z1.getReal() / z2, z1.getImaginary() / z2);
 }
 
 int main(void) {
